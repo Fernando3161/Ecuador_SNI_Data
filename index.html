@@ -141,7 +141,7 @@
             <div id="map-tooltip" class="map-tooltip" hidden></div>
           </div>
           <div class="map-footer">
-            <span><svg class="icon" aria-hidden="true"><use href="#i-mouse"/></svg><span id="map-footer-hint">Select an asset to view its details.</span></span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-mouse"/></svg><span><span id="map-footer-hint">Select an asset to view its details.</span><span class="map-gesture-hint">Use two fingers to pan or zoom.</span></span></span>
             <span><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span id="map-footer-source">Schematic routes</span></span>
           </div>
         </section>
@@ -252,10 +252,10 @@
           <label class="field select-field"><span>Technology</span><select id="plant-tech" aria-label="Technology"><option value="">All</option></select></label>
           <label class="field select-field sort-field"><span>Sort</span><select id="plant-sort" aria-label="Sort plants"><option value="energy">Highest generation</option><option value="name">Name A–Z</option></select></label>
         </div>
-        <table class="registry-table">
+        <table class="registry-table" role="table">
           <caption class="sr-only">Simulated annual generation by plant record in 2022</caption>
-          <thead><tr><th scope="col">Plant and ID</th><th scope="col">Technology</th><th scope="col">Province in source data</th><th scope="col" class="numeric">Annual Generation</th><th scope="col" class="numeric">Share of domestic generation</th></tr></thead>
-          <tbody id="plant-table"></tbody>
+          <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Plant and ID</th><th scope="col" role="columnheader">Technology</th><th scope="col" role="columnheader">Province in source data</th><th scope="col" role="columnheader" class="numeric">Annual Generation</th><th scope="col" role="columnheader" class="numeric">Share of domestic generation</th></tr></thead>
+          <tbody id="plant-table" role="rowgroup"></tbody>
         </table>
         <div class="registry-footer">
           <span id="plant-count" role="status"></span>

@@ -125,14 +125,14 @@ function renderPlants() {
     button.setAttribute("aria-pressed", button.dataset.plantTech === tech);
   }
   $("#plant-table").innerHTML = visible.length ? visible.map(plant => `
-    <tr>
-      <td><span class="plant-name">${escape(plant.name)}</span><span class="plant-id">${escape(plant.id)}</span></td>
-      <td><span class="tech-chip"><i class="tech-dot" data-tech="${escape(plant.technology)}" aria-hidden="true"></i>${escape(labels[plant.technology])}</span></td>
-      <td>${escape(plant.province || "—")}</td>
-      <td class="mono numeric">${energy(plant.gwh)}</td>
-      <td class="mono numeric">${percent(100 * plant.gwh / data.summary.generation_gwh)}</td>
+    <tr role="row">
+      <td role="cell"><span class="plant-name">${escape(plant.name)}</span><span class="plant-id">${escape(plant.id)}</span></td>
+      <td role="cell"><span class="cell-label" aria-hidden="true">Technology</span><span class="tech-chip"><i class="tech-dot" data-tech="${escape(plant.technology)}" aria-hidden="true"></i>${escape(labels[plant.technology])}</span></td>
+      <td role="cell"><span class="cell-label" aria-hidden="true">Source province</span>${escape(plant.province || "—")}</td>
+      <td role="cell" class="mono numeric"><span class="cell-label" aria-hidden="true">Annual generation</span>${energy(plant.gwh)}</td>
+      <td role="cell" class="mono numeric"><span class="cell-label" aria-hidden="true">Domestic share</span>${percent(100 * plant.gwh / data.summary.generation_gwh)}</td>
     </tr>`
-  ).join("") : '<tr><td class="empty-cell" colspan="5">No plants match these filters.</td></tr>';
+  ).join("") : '<tr role="row"><td role="cell" class="empty-cell" colspan="5">No plants match these filters.</td></tr>';
   const count = filtered.length;
   $("#plant-count").textContent = count > 1
     ? `${start + 1}–${start + visible.length} of ${count} records`

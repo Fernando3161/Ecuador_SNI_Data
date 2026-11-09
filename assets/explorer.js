@@ -69,11 +69,13 @@ export function initExplorer(model, geometry, annual) {
   const buses = new Map(assets.buses.map(bus => [bus.id, bus]));
   const totalGroups = groupGeneration(annual.plants, buses);
   const labels = Object.fromEntries(annual.technologies.map(({ key, label }) => [key, label]));
-  const map = new NetworkMap($("#grid-map"), geometry, assets, select);
+  const canvas = $("#grid-map");
+  const map = new NetworkMap(canvas, geometry, assets, select);
   const search = $("#asset-search");
   const results = $("#search-results");
   const filter = $("#generation-tech");
   const detail = $("#asset-detail");
+  const compactLayout = window.matchMedia("(max-width: 840px)");
   let selected = null;
   let mode;
   let groups = totalGroups;
@@ -192,12 +194,14 @@ export function initExplorer(model, geometry, annual) {
       <p class="detail-caption">Source <span class="detail-id">${clean(generation ? "Notebook 06A · Bus assignments" : model.meta.file)}</span></p>`;
     $("#close-detail").onclick = () => {
       select(null);
-      $("#grid-map").focus({ preventScroll: true });
+      canvas.focus({ preventScroll: true });
+      if (compactLayout.matches) canvas.scrollIntoView({ block: "nearest" });
     };
     for (const button of $$("[data-neighbor]")) {
       button.onclick = () => reveal(neighbors[Number(button.dataset.neighbor)]);
     }
-    if (focus) $("#detail-heading").focus({ preventScroll: true });
+    if (focus || compactLayout.matches) $("#detail-heading").focus({ preventScroll: true });
+    if (compactLayout.matches) detail.scrollIntoView({ block: "start" });
   }
 
   function reveal(asset) {

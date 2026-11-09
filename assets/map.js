@@ -136,12 +136,11 @@ export class NetworkMap {
     });
   }
 
-  zoomBy(factor, anchor = { x: this.width / 2, y: this.height / 2 }) {
+  zoomBy(factor, anchor = { x: this.width / 2, y: this.height / 2 }, target = anchor) {
     const before = this.scale;
     this.zoom = Math.min(12, Math.max(.72, this.zoom * factor));
-    const rate = 1 / before - 1 / this.scale;
-    this.center.x += (anchor.x - this.width / 2) * rate;
-    this.center.y += (anchor.y - this.height / 2) * rate;
+    this.center.x += (anchor.x - this.width / 2) / before - (target.x - this.width / 2) / this.scale;
+    this.center.y += (anchor.y - this.height / 2) / before - (target.y - this.height / 2) / this.scale;
     this.clampCenter();
     this.clearHover();
     this.repaint();
@@ -217,39 +216,69 @@ export class NetworkMap {
       this.zoomBy(Math.exp(-Math.max(-170, Math.min(170, event.deltaY)) * .0025), pos(event));
     }, { passive: false });
     canvas.addEventListener("pointerdown", event => {
-      if (event.button !== 0) return;
-      const p = pos(event);
-      this.drag = { start: p, center: { ...this.center }, moved: false };
+      if (event.button !== 0 || !event.isPrimary) return;
+      this.drag = { id: event.pointerId, start: pos(event), center: { ...this.center }, moved: false };
       canvas.setPointerCapture(event.pointerId);
     });
     canvas.addEventListener("pointermove", event => {
       const p = pos(event);
-      if (this.drag) {
-        const dx = p.x - this.drag.start.x;
-        const dy = p.y - this.drag.start.y;
-        if (Math.hypot(dx, dy) > 3) this.drag.moved = true;
-        if (this.drag.moved) {
-          canvas.classList.add("is-dragging");
-          this.center = { x: this.drag.center.x - dx / this.scale, y: this.drag.center.y - dy / this.scale };
-          this.clampCenter();
-          this.clearHover();
-          this.repaint();
-        }
-      } else {
-        this.hoverAt(p);
+      const drag = this.drag;
+      const touch = event.pointerType === "touch";
+      if (drag?.id !== event.pointerId) {
+        if (!drag && !touch) this.hoverAt(p);
+        return;
       }
+      const dx = p.x - drag.start.x;
+      const dy = p.y - drag.start.y;
+      if (Math.hypot(dx, dy) > (touch ? 8 : 3)) drag.moved = true;
+      if (!drag.moved || touch) return;
+      canvas.classList.add("is-dragging");
+      this.center = { x: drag.center.x - dx / this.scale, y: drag.center.y - dy / this.scale };
+      this.clampCenter();
+      this.clearHover();
+      this.repaint();
     });
     canvas.addEventListener("pointerup", event => {
-      if (this.drag && !this.drag.moved) this.onSelect(this.hitTest(pos(event)));
+      const drag = this.drag;
+      if (drag?.id !== event.pointerId) return;
       this.drag = null;
       canvas.classList.remove("is-dragging");
+      if (!drag.moved) this.onSelect(this.hitTest(pos(event), event.pointerType === "touch" ? 4 : 0));
     });
-    canvas.addEventListener("pointercancel", () => {
+    canvas.addEventListener("pointercancel", event => {
+      if (this.drag?.id !== event.pointerId) return;
       this.drag = null;
       this.clearHover();
       canvas.classList.remove("is-dragging");
       this.repaint();
     });
+    // Leave single-finger swipes to page scrolling. Capture a gesture when both fingers are on the map.
+    let pinch = null;
+    const touchGeometry = touches => {
+      const a = pos(touches[0]);
+      const b = pos(touches[1]);
+      return { center: midpoint(a, b), distance: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y)) };
+    };
+    canvas.addEventListener("touchstart", event => {
+      if (event.targetTouches.length < 2) return;
+      event.preventDefault();
+      this.drag = null;
+      pinch = touchGeometry(event.targetTouches);
+      this.clearHover();
+      this.repaint();
+    }, { passive: false });
+    canvas.addEventListener("touchmove", event => {
+      if (!pinch || event.targetTouches.length < 2) return;
+      event.preventDefault();
+      const next = touchGeometry(event.targetTouches);
+      this.zoomBy(next.distance / pinch.distance, pinch.center, next.center);
+      pinch = next;
+    }, { passive: false });
+    const endTouch = event => {
+      pinch = event.targetTouches.length < 2 ? null : touchGeometry(event.targetTouches);
+    };
+    canvas.addEventListener("touchend", endTouch);
+    canvas.addEventListener("touchcancel", endTouch);
     canvas.addEventListener("pointerleave", () => {
       this.clearHover();
       this.repaint();
@@ -278,13 +307,13 @@ export class NetworkMap {
     });
   }
 
-  hitTest(point) {
+  hitTest(point, padding = 0) {
     if (this.mode === "generation") {
       let closest = null;
       let bestDistance = Infinity;
       for (const { asset, position, radius } of this.generationHits) {
         const distance = Math.hypot(point.x - position.x, point.y - position.y);
-        if (distance <= radius + 3 && distance <= bestDistance) {
+        if (distance <= radius + 3 + padding && distance <= bestDistance) {
           closest = asset;
           bestDistance = distance;
         }
@@ -292,7 +321,7 @@ export class NetworkMap {
       return closest;
     }
     let closestPoint = null;
-    let closestDist = 8;
+    let closestDist = 8 + padding;
     for (const hit of [...this.hits.buses, ...this.hits.transformers]) {
       const distance = Math.hypot(point.x - hit.position.x, point.y - hit.position.y);
       if (distance < closestDist) {
@@ -302,7 +331,7 @@ export class NetworkMap {
     }
     if (closestPoint) return closestPoint;
     let closestLine = null;
-    closestDist = 5;
+    closestDist = 5 + padding;
     for (const hit of this.hits.lines) {
       const { a, b, middle, asset } = hit;
       const distance = Math.min(segmentDistance(point, a, middle), segmentDistance(point, middle, b));

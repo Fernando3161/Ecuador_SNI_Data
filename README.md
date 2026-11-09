@@ -1,6 +1,6 @@
 # Ecuador SNI Data
 
-A desktop dashboard prototype for exploring the 2022 PyPSA model of mainland Ecuador’s *Sistema Nacional Interconectado* (SNI). The home page opens on an interactive transmission map, with annual generation, demand, and cross-border exchanges available in the results views.
+A dashboard prototype for exploring the 2022 PyPSA model of mainland Ecuador’s *Sistema Nacional Interconectado* (SNI) on desktop and mobile. The home page opens on an interactive transmission map, with annual generation, demand, and cross-border exchanges available in the results views.
 
 ## Explore the dashboard
 
@@ -10,6 +10,8 @@ A desktop dashboard prototype for exploring the 2022 PyPSA model of mainland Ecu
 | **2022 Results** | Explore annual generation and demand, peak hourly demand, imports, exports, and unserved energy. Compare the modeled supply mix with the CENACE reference. |
 | **Power Plants** | Search by plant name, model ID, or province. Filter by technology and sort by annual generation. |
 | **Data & Methods** | Download the annual tables and review the sources, calculation methods, and scope of the CENACE comparison. |
+
+On a touchscreen, swipe with one finger to scroll the page. Use two fingers to pan or zoom the map, and tap an asset to open its details. The plant registry stacks each record on narrow screens.
 
 ## 2022 model at a glance
 
@@ -42,7 +44,7 @@ cd Ecuador_SNI_Data
 python -m http.server 8000
 ```
 
-Open [localhost:8000](http://localhost:8000/) in a desktop browser.
+Open [localhost:8000](http://localhost:8000/) in a browser.
 
 ## Publish with GitHub Pages
 
