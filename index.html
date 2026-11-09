@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Ecuador’s 2022 electricity transmission model, annual generation by bus, and system indicators.">
+  <meta name="theme-color" content="#11252a">
+  <title>Ecuador SNI Data · 2022 Grid Explorer</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-mark" viewBox="0 0 32 32"><path d="m7 8 8 8-7 8m7-8L24 6m-9 10 10 9"/><circle cx="7" cy="8" r="2.6"/><circle cx="8" cy="24" r="2.6"/><circle cx="24" cy="6" r="2.6"/><circle cx="25" cy="25" r="2.6"/><circle cx="15" cy="16" r="3"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="6" height="6" rx="1"/><rect x="14.5" y="3.5" width="6" height="6" rx="1"/><rect x="3.5" y="14.5" width="6" height="6" rx="1"/><rect x="14.5" y="14.5" width="6" height="6" rx="1"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h5l3-7 4 14 3-7h5"/></symbol>
+    <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4m8-4v4m-8 7h2m4 0h2m-8 3h2"/></symbol>
+    <symbol id="i-node" viewBox="0 0 24 24"><path d="M12 2v5m0 10v5M2 12h5m10 0h5"/><circle cx="12" cy="12" r="5"/></symbol>
+    <symbol id="i-line" viewBox="0 0 24 24"><path d="M7.7 16.3 16.3 7.7"/><circle cx="5.5" cy="18.5" r="3"/><circle cx="18.5" cy="5.5" r="3"/></symbol>
+    <symbol id="i-transformer" viewBox="0 0 24 24"><path d="M2 12h4m12 0h4"/><circle cx="10" cy="12" r="4"/><circle cx="14" cy="12" r="4"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-12h-7l1-8Z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-fit" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/><circle cx="12" cy="12" r="2.5"/></symbol>
+    <symbol id="i-mouse" viewBox="0 0 24 24"><path d="m5 3 15 10-7 1-3 7L5 3Z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.1"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H5V3h2Zm7 0v5h5M8 13h8m-8 4h8"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-exchange" viewBox="0 0 24 24"><path d="M3 8h17m-4-4 4 4-4 4M21 16H4m4-4-4 4 4 4"/></symbol>
+    <symbol id="i-hist" viewBox="0 0 24 24"><path d="M4 4v16h16M9 16v-5m5 5V7m5 9v-3"/></symbol>
+    <symbol id="i-source" viewBox="0 0 24 24"><path d="M10 13.5a3.8 3.8 0 0 0 5.4 0l3.2-3.2a3.8 3.8 0 0 0-5.4-5.4l-1.6 1.6m2.4 4a3.8 3.8 0 0 0-5.4 0l-3.2 3.2a3.8 3.8 0 1 0 5.4 5.4l1.6-1.6"/></symbol>
+  </svg>
+
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="masthead">
+    <div class="mast-inner frame">
+      <a class="brand" href="#explorer" aria-label="Ecuador SNI Data home">
+        <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-mark"/></svg></span>
+        <span><strong>SNI Data</strong><small>ECUADOR</small></span>
+      </a>
+      <nav class="navigation" aria-label="Main navigation">
+        <a href="#explorer" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-map"/></svg>Explorer</a>
+        <a href="#results"><svg class="icon" aria-hidden="true"><use href="#i-hist"/></svg>2022 Results</a>
+        <a href="#plants"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg>Power Plants</a>
+        <a href="#data"><svg class="icon" aria-hidden="true"><use href="#i-data"/></svg>Data &amp; Methods</a>
+      </nav>
+      <div class="mast-right"><span class="prototype-label"><i></i> Prototype</span></div>
+    </div>
+  </header>
+
+  <main id="content" class="frame" tabindex="-1">
+    <div id="load-error" class="notice" role="alert" hidden>The indicators could not be loaded. Reload the page to try again.</div>
+    <section id="view-explorer" class="view" aria-labelledby="title-explorer">
+      <div class="page-intro">
+        <div>
+          <p class="eyebrow"><span></span>NATIONAL INTERCONNECTED SYSTEM</p>
+          <h1 id="title-explorer">Electricity Grid Explorer</h1>
+          <p class="dek">Transmission and annual generation in mainland Ecuador · 2022 model</p>
+        </div>
+        <div class="intro-actions">
+          <a href="#results" class="button primary"><svg class="icon" aria-hidden="true"><use href="#i-hist"/></svg>View 2022 KPIs</a>
+        </div>
+      </div>
+      <div id="map-load-error" class="notice" role="alert" hidden>The map could not be loaded. Reload the page to try again.</div>
+      <div class="explorer-layout">
+        <section class="panel map-panel" aria-labelledby="map-heading">
+          <div class="map-header">
+            <div><h2 id="map-heading">Transmission Map</h2><p id="map-description">Mainland Ecuador</p></div>
+            <div class="map-tools">
+              <div class="segmented map-tabs" role="group" aria-label="Map view">
+                <a href="#explorer" data-map-view="network" aria-current="true">Network</a>
+                <a href="#generation-map" data-map-view="generation">Annual Generation</a>
+              </div>
+              <div id="map-search" class="map-search">
+                <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+                <input id="asset-search" type="search" placeholder="Search by ID" aria-label="Search for an asset by ID" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox">
+                <kbd aria-hidden="true" title="Search shortcut">/</kbd>
+                <div id="search-results" class="search-results" role="listbox" aria-label="Search results" hidden></div>
+              </div>
+              <div class="layer-wrap" id="layer-wrap">
+                <button type="button" class="button outline" id="layer-button" aria-expanded="false" aria-controls="layer-menu"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>Layers</button>
+                <div class="layer-menu" id="layer-menu" hidden>
+                  <div class="layer-heading">Map layers <button type="button" class="text-button" id="restore-layers">Reset</button></div>
+                  <fieldset data-network-only>
+                    <legend>Nominal voltage</legend>
+                    <label><input type="checkbox" data-voltage="500" checked><span class="line-key v500"></span>500 kV</label>
+                    <label><input type="checkbox" data-voltage="230" checked><span class="line-key v230"></span>230 kV</label>
+                    <label><input type="checkbox" data-voltage="138" checked><span class="line-key v138"></span>138 kV</label>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Assets and geography</legend>
+                    <label data-generation-only hidden><input type="checkbox" data-layer="network" checked>Reference network</label>
+                    <label data-network-only><input type="checkbox" data-layer="buses" checked>Buses</label>
+                    <label data-network-only><input type="checkbox" data-layer="transformers" checked>Transformers</label>
+                    <label><input type="checkbox" data-layer="relief" checked>Terrain relief</label>
+                    <label><input type="checkbox" data-layer="labels" checked>Geographic labels</label>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="map-surface" class="map-surface">
+            <canvas id="grid-map" tabindex="0" aria-label="Transmission network map. Use the arrow keys to pan and the plus and minus keys to zoom."></canvas>
+            <span class="map-mode"><span class="mode-dot"></span> <span id="map-mode-label">TRANSMISSION NETWORK</span><b>2022</b></span>
+            <div class="map-controls" aria-label="Map controls">
+              <div class="zoom-group">
+                <button type="button" id="zoom-in" aria-label="Zoom in" title="Zoom in"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <button type="button" id="zoom-out" aria-label="Zoom out" title="Zoom out"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+              </div>
+              <button type="button" class="fit-button" id="zoom-fit" aria-label="Fit to Ecuador" title="Fit to Ecuador"><svg class="icon" aria-hidden="true"><use href="#i-fit"/></svg></button>
+              <div class="north" aria-hidden="true"><span>N</span><svg viewBox="0 0 24 25"><path d="m12 1 6 21-6-4-6 4Z"/><path d="M12 1v17l-6 4Z"/></svg></div>
+            </div>
+            <div class="legend" aria-label="Network legend" data-network-only>
+              <p>NOMINAL VOLTAGE</p>
+              <div class="legend-voltages">
+                <div data-legend-voltage="500"><span class="line-key v500"></span><b>500</b> kV</div>
+                <div data-legend-voltage="230"><span class="line-key v230"></span><b>230</b> kV</div>
+                <div data-legend-voltage="138"><span class="line-key v138"></span><b>138</b> kV</div>
+              </div>
+              <div class="legend-assets"><div data-legend-layer="buses"><span class="node-key"></span>Bus</div><div data-legend-layer="transformers"><span class="transformer-key"></span>Transformer</div></div>
+            </div>
+            <div class="legend generation-legend" aria-label="Generation legend" data-generation-only hidden>
+              <p>DOMINANT TECHNOLOGY</p>
+              <div id="generation-legend-tech"></div>
+              <div class="generation-legend-unit">Bubble area by GWh · log scale</div>
+            </div>
+            <div class="map-credit">
+              <div id="map-scale" class="scale" aria-hidden="true"><span>100 km</span><i></i></div>
+              <a href="#data" title="Map sources">Natural Earth · Mapzen</a>
+            </div>
+            <div id="map-tooltip" class="map-tooltip" hidden></div>
+          </div>
+          <div class="map-footer">
+            <span><svg class="icon" aria-hidden="true"><use href="#i-mouse"/></svg><span id="map-footer-hint">Select an asset to view its details.</span></span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span id="map-footer-source">Schematic routes</span></span>
+          </div>
+        </section>
+
+        <aside class="side-stack" aria-label="Model information">
+          <div id="map-overview" class="map-side">
+            <section class="panel side-panel composition" aria-labelledby="voltage-heading" data-network-only>
+              <p class="section-label">NETWORK COMPOSITION</p>
+              <h2 id="voltage-heading">Lines by voltage</h2>
+              <p class="panel-description">Transmission lines in the model.</p>
+              <div id="voltage-breakdown" class="voltage-breakdown"></div>
+              <p id="voltage-hint" class="composition-foot">Select a voltage to filter the map.</p>
+            </section>
+            <section class="panel side-panel topology-info" aria-labelledby="topology-heading" data-network-only>
+              <div class="map-side-heading">
+                <span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#i-node"/></svg></span>
+                <div><h2 id="topology-heading">Reference topology</h2><p class="panel-description">Electrical assets in the 2022 model</p></div>
+              </div>
+              <dl id="topology-counts" class="topology-counts"></dl>
+              <a class="forward" href="#generation-map">View generation on the map <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </section>
+            <section class="panel side-panel generation-overview" aria-labelledby="generation-heading" data-generation-only hidden>
+              <p class="section-label">SIMULATED DISPATCH</p>
+              <h2 id="generation-heading">Generation by bus</h2>
+              <p class="panel-description">Annual domestic generation at model connection buses.</p>
+              <label class="generation-filter"><span>Technology</span><select id="generation-tech" aria-label="Filter map generation by technology"><option value="">All</option></select></label>
+              <div id="generation-map-total" class="generation-total"></div>
+              <p id="generation-map-count" class="panel-description" role="status"></p>
+              <div class="generation-ranking">
+                <p class="section-label">HIGHEST GENERATION</p>
+                <div id="generation-ranking-list"></div>
+              </div>
+              <p class="composition-foot">Select a bus to see the plants assigned to it in the model.</p>
+            </section>
+            <a class="panel source-summary" href="#data">
+              <span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span>
+              <span><strong>Map data</strong><code id="summary-file"></code></span>
+              <svg class="icon summary-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+          <section class="panel side-panel detail-panel" id="asset-detail" aria-labelledby="detail-heading" hidden></section>
+        </aside>
+      </div>
+
+      <section class="annual-section" id="results" aria-labelledby="title-results" tabindex="-1">
+        <div class="annual-heading">
+          <div><p class="section-label">ANNUAL RESULTS</p><h2 id="title-results">2022 Base Case KPIs</h2></div>
+          <div class="intro-actions">
+            <span class="simulation-badge"><i></i> PyPSA simulation</span>
+            <a href="data/sni-2022-kpis.csv" download class="button outline"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download KPIs</a>
+          </div>
+        </div>
+        <div id="summary-metrics" class="metrics" aria-label="Base case indicators"></div>
+
+        <div class="results-grid">
+          <section class="panel mix-panel" aria-labelledby="mix-heading">
+            <div class="panel-head">
+              <div>
+                <p class="section-label">MODEL AND REFERENCE</p>
+                <h2 id="mix-heading">Supply mix</h2>
+                <p class="panel-description" id="mix-caption">Each category’s share of annual supply in the model and reference.</p>
+              </div>
+              <div class="segmented" role="group" aria-label="Chart units">
+                <button type="button" data-mix-unit="pct" aria-pressed="true" aria-label="Percentage share">%</button>
+                <button type="button" data-mix-unit="gwh" aria-pressed="false" aria-label="Energy in GWh">GWh</button>
+              </div>
+            </div>
+            <div class="series-legend" aria-label="Chart series">
+              <span><i class="series-key model"></i>PyPSA model</span><span><i class="series-key reference"></i>CENACE reference</span>
+            </div>
+            <div id="mix-chart" class="mix-chart" role="region" aria-labelledby="mix-heading" aria-live="polite"></div>
+            <div class="mix-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><span>The non-conventional share is <strong id="nonconv-gap"></strong> below the reference.</span></div>
+          </section>
+
+          <section class="panel balance-panel" aria-labelledby="balance-heading">
+            <div class="panel-head">
+              <div><p class="section-label">MODEL BOUNDARY</p><h2 id="balance-heading">Annual energy balance</h2></div>
+              <span class="balance-icon"><svg class="icon" aria-hidden="true"><use href="#i-exchange"/></svg></span>
+            </div>
+            <div id="balance-content"></div>
+          </section>
+        </div>
+
+        <aside class="reading-note" aria-label="Scope of the comparison">
+          <span class="note-icon"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg></span>
+          <div><strong>Partial comparison with CENACE</strong><p>The report documents a gap of <b id="reference-gap"></b> between metering boundaries. The source of the gap remains unresolved.</p></div>
+          <a class="forward" href="#data">View methodology <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </aside>
+      </section>
+    </section>
+
+    <section id="view-plants" class="view" aria-labelledby="title-plants" hidden>
+      <div class="page-intro">
+        <div>
+          <p class="eyebrow"><span></span>SIMULATED ANNUAL DISPATCH</p>
+          <h1 id="title-plants">Generation by Plant</h1>
+          <p class="dek">Explore annual energy output for each domestic generation record in the 2022 base case.</p>
+        </div>
+        <div class="intro-actions"><a href="data/sni-2022-power-plants.csv" download class="button primary"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download plant data</a></div>
+      </div>
+
+      <div id="plant-techs" class="tech-grid" aria-label="Filter plants by technology"></div>
+
+      <section class="panel registry" aria-labelledby="plant-heading">
+        <div class="registry-heading"><h2 id="plant-heading">Modeled power plants</h2><span class="registry-scope">YEAR 2022</span></div>
+        <div class="registry-toolbar">
+          <label class="field search-field"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="plant-search" placeholder="Search by plant, ID, or province" aria-label="Search by plant, ID, or province"></label>
+          <label class="field select-field"><span>Technology</span><select id="plant-tech" aria-label="Technology"><option value="">All</option></select></label>
+          <label class="field select-field sort-field"><span>Sort</span><select id="plant-sort" aria-label="Sort plants"><option value="energy">Highest generation</option><option value="name">Name A–Z</option></select></label>
+        </div>
+        <table class="registry-table">
+          <caption class="sr-only">Simulated annual generation by plant record in 2022</caption>
+          <thead><tr><th scope="col">Plant and ID</th><th scope="col">Technology</th><th scope="col">Province in source data</th><th scope="col" class="numeric">Annual Generation</th><th scope="col" class="numeric">Share of domestic generation</th></tr></thead>
+          <tbody id="plant-table"></tbody>
+        </table>
+        <div class="registry-footer">
+          <span id="plant-count" role="status"></span>
+          <div class="pagination"><button type="button" class="icon-button" id="plant-prev" aria-label="Previous page"><svg class="icon reverse" aria-hidden="true"><use href="#i-chevron"/></svg></button><span id="plant-page"></span><button type="button" class="icon-button" id="plant-next" aria-label="Next page"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></div>
+        </div>
+      </section>
+      <p class="view-footnote"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>Each row uses its model ID. A plant can have more than one record.</p>
+    </section>
+
+    <section id="view-data" class="view" aria-labelledby="title-data" hidden>
+      <div class="page-intro">
+        <div>
+          <p class="eyebrow"><span></span>SOURCES AND DOWNLOADS</p>
+          <h1 id="title-data">Data &amp; Methods</h1>
+          <p class="dek">Indicators, definitions, and sources for the 2022 base case.</p>
+        </div>
+      </div>
+      <div class="data-grid">
+        <section class="panel data-panel" aria-labelledby="downloads-heading">
+          <p class="section-label">ANNUAL DATA</p>
+          <h2 id="downloads-heading">Downloads</h2>
+          <ul class="download-list">
+            <li><a class="download-link" href="data/sni-2022-kpis.csv" download><span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#i-hist"/></svg></span><span><strong>System indicators</strong><small>Generation, demand, peak load, and energy balance</small></span><span class="status-chip">CSV</span><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></a></li>
+            <li><a class="download-link" href="data/sni-2022-supply-mix.csv" download><span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#i-pulse"/></svg></span><span><strong>Supply mix</strong><small>Model and reference values in GWh and percentages</small></span><span class="status-chip">CSV</span><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></a></li>
+            <li><a class="download-link" href="data/sni-2022-power-plants.csv" download><span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span><span><strong>Generation by Plant</strong><small>Annual energy, technology, and source record</small></span><span class="status-chip">CSV</span><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></a></li>
+          </ul>
+        </section>
+
+        <section class="panel data-panel" aria-labelledby="provenance-heading">
+          <p class="section-label">DATA PROVENANCE</p>
+          <h2 id="provenance-heading">Indicator sources</h2>
+          <ul class="ref-list">
+            <li><a id="link-doi" href="https://zenodo.org/records/23726852" target="_blank" rel="noopener">Reference archive on Zenodo <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span id="data-doi"></span></li>
+            <li><a id="link-diagnostics" target="_blank" rel="noopener">Notebook 06A tables on GitHub <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span id="data-branch"></span></li>
+            <li><a id="link-crosscheck" target="_blank" rel="noopener">Summary of the archived run <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span>Annual demand and supply shares were cross-checked to the published precision.</span></li>
+            <li><a id="link-doi-commit" target="_blank" rel="noopener">Source code for the DOI-linked run <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span id="data-doi-commit"></span></li>
+          </ul>
+          <p class="source-note">The KPIs and plant-to-bus assignments use versioned exports from the 06H branch. Plant-level generation and peak demand follow the notebook 06A tables.</p>
+        </section>
+      </div>
+      <div class="data-grid secondary-data">
+        <section class="panel data-panel" aria-labelledby="method-heading">
+          <h2 id="method-heading">How the indicators were calculated</h2>
+          <ul class="method-list">
+            <li>Annual plant generation sums the 12 monthly MWh totals from notebook 06A and converts them to GWh. Plant IDs correspond to rows in the generation inventory.</li>
+            <li>Peak demand is the maximum domestic load across 8,760 hourly time steps. The site publishes the annual peak.</li>
+            <li>Domestic generation excludes imports and the model’s accounting term for unserved energy. Supply includes imports. Exports are reported separately from SNI demand.</li>
+            <li>Shares use annual supply totals for each source. Differences are given in percentage points.</li>
+            <li>The network map uses coordinates from the 2022 reference NetCDF and shows schematic connections. The generation layer sums GWh by bus using the model’s plant assignments.</li>
+          </ul>
+        </section>
+        <section class="panel data-panel" aria-labelledby="limitations-heading">
+          <h2 id="limitations-heading">Scope of the comparison</h2>
+          <ul class="method-list">
+            <li>The KPIs describe the 2022 PyPSA dispatch simulation.</li>
+            <li>The base case falls short of the non-conventional generation share criterion. The historical comparison is partial.</li>
+            <li>The CENACE statistical gap is reported separately from the modeled balance. The metering boundaries still need to be reconciled.</li>
+          </ul>
+          <ul class="ref-list">
+            <li><a id="link-validation" target="_blank" rel="noopener">Comparison table with CENACE <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span>Energy totals and shares by category</span></li>
+            <li><a id="link-attachments" target="_blank" rel="noopener">Plant-to-bus assignments <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span>Connection IDs in the 2022 model</span></li>
+            <li><a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener">Natural Earth <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span>Boundaries, rivers, and settlements · public domain</span></li>
+            <li><a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a><span>Terrain relief derived from elevation data · <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener">credits</a></span></li>
+          </ul>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer frame"><span><span class="footer-dot"></span>SNI Data <span class="footer-sep">/</span> Data portal prototype</span><a href="#data">Mainland Ecuador · 2022 base case</a></footer>
+</body>
+</html>

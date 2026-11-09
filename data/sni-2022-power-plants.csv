@@ -1,0 +1,139 @@
+﻿model_id,plant,technology,source_province,annual_generation_gwh,domestic_share_pct
+ec2022_002_Coca_Codo_Sinclair,Coca Codo Sinclair,Hydropower,Napo,7942.30210183,29.10615795
+ec2022_003_Molino,Molino,Hydropower,Azuay,5021.3064897,18.40158407
+ec2022_004_Sopladora,Sopladora,Hydropower,Azuay,2859.87149148,10.48057229
+ec2022_005_Minas_San_Francisco,Minas San Francisco,Hydropower,Azuay,1280.59640913,4.69300221
+ec2022_009_Mazar,Mazar,Hydropower,Azuay,840.38350444,3.07975379
+ec2022_007_San_Francisco,San Francisco,Hydropower,Tungurahua,810.90895197,2.97173839
+ec2022_006_Marcel_Laniado,Marcel Laniado,Hydropower,Guayas,660.20153025,2.41944083
+ec2022_020_Esmeraldas_II,Esmeraldas II,Thermal,Esmeraldas,643.79584172,2.3593189
+ec2022_008_Delsitanisagua,Delsitanisagua,Hydropower,Zamora Chinchipe,601.1228649,2.20293522
+ec2022_010_Agoyan,Agoyán,Hydropower,Tungurahua,600.20195692,2.19956037
+ec2022_027_Due,Due,Hydropower,Sucumbios,336.57457074,1.23344498
+ec2022_023_Pucara,Pucará,Hydropower,Tungurahua,267.00523538,0.9784942
+ec2022_026_Manduriacu,Manduriacu,Hydropower,Imbabura,243.43055869,0.89210007
+ec2022_014_Jaramijo,Jaramijó,Thermal,Manabi,229.25831818,0.84016306
+ec2022_015_Esmeraldas_I,Esmeraldas I,Thermal,Esmeraldas,209.4727639,0.76765493
+ec2022_016_Termogas_Machala_II,Termogas Machala II,Thermal,El Oro,205.55247849,0.75328826
+ec2022_031_Hidrosanbartolo,Hidrosanbartolo,Hydropower,Morona Santiago,201.46158985,0.73829638
+ec2022_042_Pusuno,Pusuno,Hydropower,Napo,166.3707548,0.60969898
+ec2022_040_Cumbaya,Cumbayá,Hydropower,Pichincha,165.86316841,0.60783883
+ec2022_032_Hidronormandfa,Hidronormandfa,Hydropower,Morona Santiago,154.47691835,0.56611163
+ec2022_028_Alvaro_Tinajero,Álvaro Tinajero,Thermal,Guayas,150.55381744,0.55173464
+ec2022_019_Enrique_Garcfa,Enrique Garcfa,Thermal,Guayas,144.40756781,0.52921048
+ec2022_018_Anfbal_Santos_Gas,Anfbal Santos (Gas),Thermal,Guayas,139.75216425,0.51214982
+ec2022_013_Termogas_Machala_I,"Termogas
+Machala I",Thermal,El Oro,139.28265368,0.5104292
+ec2022_037_Baba,Baba,Hydropower,Los Rios,124.89747989,0.45771185
+ec2022_052_Nayon,Nayón,Hydropower,Pichincha,124.00681648,0.45444783
+ec2022_043_Abanico,Abanico,Hydropower,Morona Santiago,122.65258186,0.44948497
+ec2022_017_Victoria_II,Victoria II,Thermal,Guayas,121.13401811,0.44391989
+ec2022_059_Ocana,Ocaña,Hydropower,Cañar,116.35917595,0.42642152
+ec2022_012_Trinitaria,Trinitaria,Thermal,Guayas,114.78763938,0.42066231
+ec2022_056_Topo,Topo,Hydropower,Tungurahua,113.00768606,0.41413932
+ec2022_025_Santa_Elena_II,Santa Elena II,Thermal,Santa Elena,98.71974688,0.3617783
+ec2022_011_Gonzalo_Zevallos_Vapor,"Gonzalo
+Zevallos (Vapor)",Thermal,Guayas,96.16381113,0.35241156
+ec2022_104_La_Propicia,La Propicia,Thermal,Esmeraldas,91.43490805,0.33508155
+ec2022_063_Guangopolo_H,Guangopolo_H,Hydropower,Pichincha,87.77282768,0.32166112
+ec2022_029_Santa_Rosa,Santa Rosa,Thermal,Pichincha,82.09957674,0.30087035
+ec2022_070_Sigchos,Sigchos,Hydropower,Cotopaxi,81.32015978,0.29801402
+ec2022_033_Sarapullo,Sarapullo,Hydropower,Pichincha,79.93787489,0.29294836
+ec2022_061_Saucay,Saucay,Hydropower,Azuay,76.15667797,0.27909141
+ec2022_076_Calope,Calope,Hydropower,Cotopaxi,71.95728626,0.2637019
+ec2022_038_Quevedo_II,Quevedo II,Thermal,Los Rios,70.39556401,0.25797865
+ec2022_079_Sibimbe,Sibimbe,Hydropower,Los Rios,68.03243611,0.2493185
+ec2022_041_Miraflores,Miraflores,Thermal,Manabi,66.91214721,0.24521297
+ec2022_034_Guangopolo2,Guangopolo2,Thermal,Pichincha,65.26920693,0.23919209
+ec2022_047_Generoca,Generoca,Thermal,Guayas,64.6929375,0.23708024
+ec2022_078_Recuperadora,Recuperadora,Hydropower,Pichincha,61.93007273,0.22695516
+ec2022_065_Anfbal_Santos_Vapor,Anfbal Santos (Vapor),Thermal,Guayas,60.94437473,0.22334288
+ec2022_039_Santa_Elena_III,Santa Elena III,Thermal,Santa Elena,50.61918946,0.18550417
+ec2022_075_Saymirfn,Saymirfn,Hydropower,Azuay,49.70237625,0.18214432
+ec2022_066_Gonzalo_Zevallos_Gas,Gonzalo Zevallos (Gas),Thermal,Guayas,48.0962421,0.17625832
+ec2022_050_G_Hernandez,G. Hernández,Thermal,Pichincha,45.40930618,0.1664115
+ec2022_095_Palmira_Nanegal,"Palmira-
+Nanegal",Hydropower,Pichincha,44.10008232,0.16161359
+ec2022_099_Victoria,Victoria,Hydropower,Napo,43.69278152,0.16012096
+ec2022_094_Alao,Alao,Hydropower,Chimborazo,43.35739952,0.15889188
+ec2022_109_San_Jose_de_Tambo,San José de Tambo,Hydropower,Bolivar,39.67046768,0.14538038
+ec2022_096_Rio_Verde_Chico,Rio Verde Chico,Hydropower,Tungurahua,38.98295875,0.14286087
+ec2022_022_San_Carlos,San Carlos,Biomass,Guayas,37.82781357,0.1386276
+ec2022_060_Selva_Alegre,Selva Alegre,Thermal,Imbabura,36.96072048,0.13544997
+ec2022_105_El_Carmen,El Carmen,Hydropower,Pichincha,35.62010346,0.13053701
+ec2022_108_Chalpi,Chalpi,Hydropower,Napo,34.41428183,0.12611803
+ec2022_071_Manta_II,Manta II,Thermal,Manabi,32.07039427,0.11752839
+ec2022_131_Jivino_I,Jivino I,Thermal,Sucumbios,31.60468259,0.11582169
+ec2022_098_Jivino_II,Jivino II,Thermal,Sucumbios,31.11575597,0.11402992
+ec2022_113_Ambi,Ambi,Hydropower,Imbabura,31.03824005,0.11374585
+ec2022_062_Guangopolo_T,Guangopolo_T,Thermal,Pichincha,31.00344529,0.11361834
+ec2022_126_San_Jose_de_Minas,San José de Minas,Hydropower,Pichincha,28.94612111,0.10607886
+ec2022_124_Papallacta,Papallacta,Hydropower,Napo,28.21351442,0.10339408
+ec2022_122_Alazan,Alazán,Hydropower,Cañar,26.9314483,0.09869569
+ec2022_128_Vindobona,Vindobona,Hydropower,Pichincha,25.98718652,0.09523525
+ec2022_072_El_Descanso,El Descanso,Thermal,Cañar,25.10586075,0.09200546
+ec2022_147_Pedernales,Pedernales,Thermal,Manabi,24.11108748,0.08835991
+ec2022_119_Celso_Castellanos,"Celso
+Castellanos",Thermal,Sucumbios,23.11538192,0.08471095
+ec2022_129_El_Inga,El Inga,Biogas,Pichincha,22.75186411,0.08337877
+ec2022_073_Catamayo,Catamayo,Thermal,Loja,22.58441432,0.08276511
+ec2022_045_Ecoelectric,Ecoelectric,Biomass,Guayas,17.87499893,0.06550652
+ec2022_138_Pasochoa,Pasochoa,Hydropower,Pichincha,15.8906046,0.05823431
+ec2022_055_Ecudos_A_G,Ecudos A-G,Biomass,Cañar,14.5266569,0.05323585
+ec2022_036_Jivino_III,Jivino III,Thermal,Sucumbios,13.07601758,0.04791969
+ec2022_159_Rfo_Blanco,Rfo Blanco,Hydropower,Chimborazo,12.53788364,0.04594759
+ec2022_133_Illuchi_No_2,Illuchi No.2,Hydropower,Cotopaxi,12.51120115,0.0458498
+ec2022_167_San_Miguel_de_Car,San Miguel de Car,Hydropower,Carchi,12.16069523,0.04456531
+ec2022_161_Penfnsula,Penfnsula,Hydropower,Tungurahua,11.64660214,0.04268131
+ec2022_171_Perlabf,Perlabf,Hydropower,Pichincha,11.53320634,0.04226575
+ec2022_051_Sabanilla,Sabanilla,Hydropower,Zamora Chinchipe,10.97478923,0.04021931
+ec2022_144_Illuchi_No_1,Illuchi No.1,Hydropower,Cotopaxi,10.116048,0.03707229
+ec2022_178_Loreto,Loreto,Hydropower,Napo,9.83369075,0.03603753
+ec2022_185_La_Calera,La Calera,Hydropower,Pichincha,8.83484729,0.03237707
+ec2022_202_Pichacay,Pichacay,Biogas,Azuay,7.77670802,0.02849931
+ec2022_199_Los_Chillos,Los Chillos,Hydropower,Pichincha,6.94605244,0.0254552
+ec2022_204_Geppert,Geppert,Hydropower,Pichincha,6.27155463,0.02298337
+ec2022_151_Lligua,Lligua,Thermal,Tungurahua,6.19708876,0.02271047
+ec2022_218_La_Playa,La Playa,Hydropower,Carchi,5.86452748,0.02149174
+ec2022_145_Macas,Macas,Thermal,Morona Santiago,4.91968493,0.01802917
+ec2022_245_El_Laurel,El Laurel,Hydropower,Carchi,4.31741977,0.01582205
+ec2022_251_Uravia,Uravia,Hydropower,Pichincha,4.234853,0.01551947
+ec2022_229_Ulba,Ulba,Hydropower,Tungurahua,3.90738186,0.01431938
+ec2022_258_Buenos_Aires,Buenos Aires,Hydropower,Imbabura,3.81012494,0.01396297
+ec2022_260_Hidrocarolina,Hidrocarolina,Hydropower,Imbabura,3.57727128,0.01310963
+ec2022_255_Gualaceo,Gualaceo,Hydropower,Azuay,3.54164002,0.01297905
+ec2022_252_Corazon,Corazón,Hydropower,Pichincha,3.50097367,0.01283002
+ec2022_192_Payamino,Payamino,Thermal,Orellana,3.15340089,0.01155627
+ec2022_279_Fabrica_Imbabura,"Fábrica
+Imbabura",Hydropower,Imbabura,3.07429992,0.01126639
+ec2022_194_Dayuma,Dayuma,Thermal,Orellana,2.86197639,0.01048829
+ec2022_193_Loreto,Loreto,Thermal,Orellana,2.85355276,0.01045742
+ec2022_172_Carlos_Mora,Carlos Mora,Hydropower,Zamora Chinchipe,2.77017751,0.01015187
+ec2022_184_Salinas,Salinas,Solar,Imbabura,2.7048864,0.0099126
+ec2022_074_Villonaco,Villonaco,Wind,Loja,2.53566558,0.00929245
+ec2022_236_San_Pedro,San Pedro,Solar,Loja,1.52337172,0.0055827
+ec2022_237_Gonzanergy,Gonzanergy,Solar,Loja,1.52337172,0.0055827
+ec2022_238_Surenergy,Surenergy,Solar,Loja,1.52337172,0.0055827
+ec2022_272_Sabiango_Solar,Sabiango Solar,Solar,Loja,1.52337172,0.0055827
+ec2022_273_Renova_Loja,Renova Loja,Solar,Loja,1.52337172,0.0055827
+ec2022_274_Lojaenergy,Lojaenergy,Solar,Loja,1.52337172,0.0055827
+ec2022_233_Solsantros,Solsantros,Solar,El Oro,1.50317823,0.0055087
+ec2022_234_Saracaysol,Saracaysol,Solar,El Oro,1.50317823,0.0055087
+ec2022_235_Sanersol,Sanersol,Solar,El Oro,1.50317823,0.0055087
+ec2022_239_Solsantonio,Solsantonio,Solar,El Oro,1.50317823,0.0055087
+ec2022_240_Solhuaqui,Solhuaqui,Solar,El Oro,1.50317823,0.0055087
+ec2022_241_Solchacras,Solchacras,Solar,El Oro,1.50317823,0.0055087
+ec2022_243_Mulalo,Mulaló,Solar,Cotopaxi,1.37803495,0.00505009
+ec2022_244_Pastocalle,Pastocalle,Solar,Cotopaxi,1.37803495,0.00505009
+ec2022_231_Tren_Salinas,Tren Salinas,Solar,Imbabura,1.3524432,0.0049563
+ec2022_246_Paragachi,Paragachi,Solar,Imbabura,1.3524432,0.0049563
+ec2022_030_Huascachaca,Huascachaca,Wind,Loja,1.33005076,0.00487424
+ec2022_242_Electrisol,Electrisol,Solar,Pichincha,1.32290487,0.00484805
+ec2022_247_Wildtecsa,Wildtecsa,Solar,Guayas,1.15336373,0.00422673
+ec2022_248_Sansau,Sansau,Solar,Guayas,1.15336373,0.00422673
+ec2022_249_Genrenotec,Genrenotec,Solar,Guayas,1.14183009,0.00418447
+ec2022_250_Altgenotec,Altgenotec,Solar,Guayas,1.14183009,0.00418447
+ec2022_232_Brineforcorp,Brineforcorp,Solar,Manabí,1.09694885,0.00401999
+ec2022_285_Enersol,Enersol,Solar,Manabi,0.54847443,0.00200999
+ec2022_292_Tilivi,Tiliví,Hydropower,Tungurahua,0.38882472,0.00142493
+ec2022_290_Sillunchi_I,Sillunchi I,Hydropower,Pichincha,0.35384193,0.00129672

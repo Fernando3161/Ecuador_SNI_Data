@@ -1,0 +1,12 @@
+﻿year,indicator,value,unit
+2022,Domestic generation,27287.36,GWh
+2022,Domestic demand,27561.62,GWh
+2022,Peak hourly demand,4388.06,MW
+2022,Unserved energy,0.0,GWh
+2022,Imports,465.83,GWh
+2022,Exports,191.57,GWh
+2022,Net imports,274.26,GWh
+2022,Total modeled supply,27753.19,GWh
+2022,CENACE reference supply,28684.61,GWh
+2022,Documented statistical gap,931.43,GWh
+2022,Total variation distance,0.8304520692729007,pp
