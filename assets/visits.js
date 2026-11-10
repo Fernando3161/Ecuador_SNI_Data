@@ -15,7 +15,7 @@ if (onDashboard && /^[a-z0-9-]+$/.test(site) && mayTrack) {
     ...request, mode: "no-cors", cache: "no-store", keepalive: true,
   }).catch(() => {});
 
-  fetch(`${host}/counter/${path}.json`, request)
+  fetch(`${host}/counter/${path}.json?start=2026-11-10`, request)
     .then(response => response.ok ? response.json() : null)
     .then(data => {
       const digits = String(data?.count ?? "").replace(/[,\s.]/g, "");
