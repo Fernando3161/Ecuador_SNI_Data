@@ -182,10 +182,28 @@ function renderSources() {
   $("#data-doi-commit").textContent = source.doi_commit.slice(0, 10);
 }
 
-async function readJSON(path) {
-  const response = await fetch(new URL(path, import.meta.url));
+async function readJSON(path, options) {
+  const response = await fetch(new URL(path, import.meta.url), options);
   if (!response.ok) throw new Error(`Could not read ${path} (${response.status})`);
   return response.json();
+}
+
+async function renderVisitCount() {
+  const counter = $("#visit-count");
+  const site = counter?.dataset.goatcounterSite ?? "";
+  if (location.origin !== "https://fernando3161.github.io" || !/^[a-z0-9-]+$/.test(site)) return;
+  if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
+
+  const path = encodeURIComponent("/Ecuador_SNI_Data/");
+  const { count } = await readJSON(`https://${site}.goatcounter.com/counter/${path}.json?start=2026-11-10`, {
+    credentials: "omit", referrerPolicy: "no-referrer",
+  });
+  const digits = String(count ?? "").replace(/[,\s.]/g, "");
+  if (!/^\d+$/.test(digits)) return;
+  const total = Number(digits);
+  if (!Number.isSafeInteger(total)) return;
+  counter.textContent = `${integer.format(total)} ${total === 1 ? "visit" : "visits"}`;
+  counter.hidden = false;
 }
 
 async function start() {
@@ -218,3 +236,5 @@ start().catch(error => {
   console.error(error);
   $("#load-error").hidden = false;
 });
+
+renderVisitCount().catch(() => {});
