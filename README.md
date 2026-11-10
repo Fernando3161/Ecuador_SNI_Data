@@ -49,3 +49,5 @@ Open [localhost:8000](http://localhost:8000/) in a browser.
 ## Publish with GitHub Pages
 
 In **Settings → Pages**, select **Deploy from a branch**, choose `main` and `/(root)`, and save. The site is served at [fernando3161.github.io/Ecuador_SNI_Data](https://fernando3161.github.io/Ecuador_SNI_Data/) once Pages completes deployment.
+
+The optional footer counter uses [GoatCounter](https://www.goatcounter.com/help/visitor-counter). To enable it, set `data-goatcounter-site` on `#visit-count` in `index.html` to the public site code and enable public visitor counts in GoatCounter. The counter records visits only on the published dashboard and honors Do Not Track and Global Privacy Control.
